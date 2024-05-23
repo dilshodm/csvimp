@@ -27,3 +27,6 @@ plugin/qrc_csvimp.cpp
 plugin/tmp/
 plugins/
 .qmake.stash
+
+build*/
+*.user
