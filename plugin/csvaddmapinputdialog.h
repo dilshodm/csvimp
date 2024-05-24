@@ -20,7 +20,7 @@ class CSVAddMapInputDialog : public QDialog, Ui::CSVAddMapInputDialog
   Q_OBJECT
 
   public:
-    CSVAddMapInputDialog(QWidget *parent = 0, Qt::WindowFlags f = 0);
+    CSVAddMapInputDialog(QWidget *parent = 0, Qt::WindowFlags f = Qt::WindowFlags {});
     virtual ~CSVAddMapInputDialog();
 
     virtual QString mapname()          const;

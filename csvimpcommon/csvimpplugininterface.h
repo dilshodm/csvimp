@@ -18,8 +18,8 @@ class CSVImpPluginInterface
   public:
     virtual ~CSVImpPluginInterface() {};
 
-    virtual QMainWindow *getCSVAtlasWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0) = 0;
-    virtual QMainWindow *getCSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0) = 0;
+    virtual QMainWindow *getCSVAtlasWindow(QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowFlags {}) = 0;
+    virtual QMainWindow *getCSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowFlags {}) = 0;
     virtual bool    importCSV()      = 0;
     virtual bool    isInteractive()  = 0;
     virtual QString lastError()      = 0;

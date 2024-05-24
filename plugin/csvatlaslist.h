@@ -20,9 +20,9 @@ class CSVAtlasList : public QDialog, Ui::CSVAtlasList
   Q_OBJECT
 
   public:
-    CSVAtlasList(QWidget *parent = 0, Qt::WindowFlags f = 0);
+    CSVAtlasList(QWidget *parent = 0, Qt::WindowFlags f = Qt::WindowFlags {});
     virtual ~CSVAtlasList();
- 
+
     virtual QString selectedAtlas()   const;
 
   protected slots:

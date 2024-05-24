@@ -25,9 +25,9 @@
 CSVImpPlugin::CSVImpPlugin(QObject *parent)
   : QObject(parent)
 {
-  _atlasdir      = QString::null;
+  _atlasdir      = QString {};
   _atlaswindow   = 0;
-  _csvdir        = QString::null;
+  _csvdir        = QString {};
   _csvtoolwindow = 0;
   _msghandler    = 0;
 }
@@ -97,7 +97,7 @@ bool CSVImpPlugin::isInteractive()
 
 QString CSVImpPlugin::lastError()
 {
-  QString msg = QString::null;
+  QString msg = QString {};
 
   if (_msghandler)
   {

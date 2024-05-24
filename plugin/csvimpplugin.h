@@ -28,8 +28,8 @@ class CSVImpPlugin : public QObject, public CSVImpPluginInterface
   public:
     CSVImpPlugin(QObject *parent = 0);
 
-    virtual QMainWindow *getCSVAtlasWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    virtual QMainWindow *getCSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    virtual QMainWindow *getCSVAtlasWindow(QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowFlags {});
+    virtual QMainWindow *getCSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowFlags {});
     virtual bool    importCSV();
     virtual bool    isInteractive();
     virtual QString lastError();

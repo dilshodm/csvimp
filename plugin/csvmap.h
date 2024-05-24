@@ -22,7 +22,7 @@
 class CSVMapField
 {
   public:
-    CSVMapField(const QString & name = QString::null);
+    CSVMapField(const QString &name = QString {});
     CSVMapField(const QDomElement &);
     virtual ~CSVMapField();
 
@@ -110,7 +110,7 @@ class CSVMap
   public:
     static QString DefaultDelimiter;
 
-    CSVMap(const QString & name = QString::null);
+    CSVMap(const QString & name = QString {});
     CSVMap(const QDomElement &);
     virtual ~CSVMap();
 

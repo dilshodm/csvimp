@@ -41,10 +41,10 @@ CSVAtlasWindow::CSVAtlasWindow(QWidget *parent) : QMainWindow(parent)
   setupUi(this);
 
   _atlas       = new CSVAtlas();
-  _currentDir  = QString::null;
-  _filename    = QString::null;
+  _currentDir  = QString {};
+  _filename    = QString {};
   _msghandler  = new InteractiveMessageHandler(this);
-  _selectedMap = QString::null;
+  _selectedMap = QString {};
 
   sMapChanged(0);
 
@@ -65,7 +65,7 @@ void CSVAtlasWindow::languageChange()
 void CSVAtlasWindow::fileNew()
 {
   _map->clear();
-  _filename = QString::null;
+  _filename = QString {};
   sMapChanged(0);
   if(_atlas)
   {
@@ -93,7 +93,7 @@ void CSVAtlasWindow::fileOpen(QString filename)
       if (QFile::exists(fullpath))
         filename = fullpath;
       else
-        filename = QString::null;
+        filename = QString {};
     }
   }
 
@@ -141,7 +141,7 @@ void CSVAtlasWindow::fileOpen(QString filename)
 void CSVAtlasWindow::dbOpen(QString filename)
 {
   QSqlQuery atl;
-  QString dbMap = QString::null;
+  QString dbMap = QString {};
   QDomDocument doc = QDomDocument();
   QString errMsg;
   int errLine, errCol;
@@ -289,7 +289,7 @@ void CSVAtlasWindow::dbSave()
   saveatlas.prepare("SELECT EXISTS(SELECT 1 FROM atlas WHERE atlas_name = :atlasname);");
   saveatlas.bindValue(":atlasname", _atlasName->text().trimmed());
   saveatlas.exec();
-  if (saveatlas.first())   
+  if (saveatlas.first())
   {
     if (saveatlas.value("exists").toBool())
       saveatlas.prepare("UPDATE atlas SET atlas_atlasmap=:atlasmap WHERE atlas_name=:atlasname;");
@@ -371,9 +371,9 @@ void CSVAtlasWindow::sAddMap()
   QSqlDatabase db = QSqlDatabase::database();
   if(db.isValid())
   {
-    QString name  = QString::null;
-    QString table = QString::null;
-    QString schema= QString::null;
+    QString name  = QString {};
+    QString table = QString {};
+    QString schema= QString {};
 
     while (true)
     {
@@ -657,7 +657,7 @@ void CSVAtlasWindow::sMapChanged( int )
     }
     else
     {
-      _selectedMap = QString::null;
+      _selectedMap = QString {};
       _table->setTitle(tr("Table: "));
       _table->setEnabled(false);
     }

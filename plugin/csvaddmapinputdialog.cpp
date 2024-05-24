@@ -111,7 +111,7 @@ QString CSVAddMapInputDialog::qualifiedTable() const
 QString CSVAddMapInputDialog::schema() const
 {
   if (_schema->currentIndex() <= 0)
-    return QString::null;
+    return QString {};
   else
     return _schema->currentText();
 }

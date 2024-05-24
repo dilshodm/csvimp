@@ -25,7 +25,7 @@ class CSVToolWindow : public QMainWindow, public Ui::CSVToolWindow
   Q_OBJECT
 
   public:
-    CSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
+    CSVToolWindow(QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowFlags {});
     ~CSVToolWindow();
     CSVAtlasWindow *atlasWindow();
 

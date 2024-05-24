@@ -65,7 +65,7 @@ CSVToolWindow::CSVToolWindow(QWidget *parent, Qt::WindowFlags flags)
   _log         = new LogWindow(this);
   _data        = 0;
   _dbTimerId   = startTimer(60000);
-  _currentDir  = QString::null;
+  _currentDir  = QString {};
   _msghandler  = new InteractiveMessageHandler(this);
 
   connect(_atlasWindow, SIGNAL(destroyed(QObject*)),      this, SLOT(cleanup(QObject*)));
@@ -163,7 +163,7 @@ void CSVToolWindow::populate()
     {
       QString header = _data->header(h);
       if(header.isEmpty())
-        header = QString(h + 1);
+        header = QString(QChar{h + 1});
       else
         header = QString("%1 (%2)").arg(h+1).arg(header);
       _table->setHorizontalHeaderItem(h, new QTableWidgetItem(header));
@@ -174,7 +174,7 @@ void CSVToolWindow::populate()
                            tr("Stop"), 0, rows, this);
   progress.setWindowModality(Qt::WindowModal);
 
-  QString v = QString::null;
+  QString v = QString {};
   for (int r = 0; r < rows; r++)
   {
     if (progress.wasCanceled())
@@ -183,7 +183,7 @@ void CSVToolWindow::populate()
     for(int c = 0; c < cols; c++)
     {
       v = _data->value(r, c);
-      if(QString::null == v)
+      if(QString {} == v)
         v = tr("(NULL)");
       _table->setItem(r, c, new QTableWidgetItem(v));
     }
@@ -253,7 +253,7 @@ void CSVToolWindow::filePrint()
       }
 
     QPrinter printer(QPrinter::HighResolution);
-    printer.setOrientation(QPrinter::Landscape);
+    printer.setPageOrientation(QPageLayout::Landscape);
     QPrintDialog printdlg(&printer, this);
     if (printdlg.exec() == QDialog::Accepted)
       textdoc.print(&printer);
@@ -323,11 +323,11 @@ void CSVToolWindow::sFirstRowHeader( bool firstisheader )
     {
       _table->insertRow(0);
 
-      QString v = QString::null;
+      QString v = QString {};
       for(int c = 0; c < cols; c++)
       {
         v = _data->value(0, c);
-        if(QString::null == v)
+        if(QString {} == v)
           v = tr("(NULL)");
         _table->setItem(0, c, new QTableWidgetItem(v));
       }
@@ -633,7 +633,7 @@ void CSVToolWindow::insertAction( bool append )
                     break;
                   }
                   default: // Nothing
-                    var = QVariant(QString::null);
+                    var = QVariant(QString {});
                 }
               }
               else
@@ -641,7 +641,7 @@ void CSVToolWindow::insertAction( bool append )
               break;
             }
             default: // Nothing
-              var = QVariant(QString::null);
+              var = QVariant(QString {});
           }
         }
         else
@@ -655,7 +655,7 @@ void CSVToolWindow::insertAction( bool append )
         filetype = (fields.at(i).fileType());
 
         if(value.isNull())
-          var = QVariant(QString::null); // Nothing (error)
+          var = QVariant(QString {}); // Nothing (error)
         else
         {
           _fileName = value;
@@ -665,21 +665,21 @@ void CSVToolWindow::insertAction( bool append )
             {
               var = imageLoadAndEncode(_fileName);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               break;
             }
             case CSVMapField::TYPE_IMAGEENC:
             {
               var = imageLoadAndEncode(_fileName, true);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               break;
             }
             case CSVMapField::TYPE_FILE:
             {
               var = docLoadAndEncode(_fileName);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               else
                 mimetype = mimedb.mimeTypeForFile(QFileInfo(_fileName)).name();
               break;
@@ -702,7 +702,7 @@ void CSVToolWindow::insertAction( bool append )
       }
       case CSVMapField::Action_UseNull:
       {
-       var = QVariant(QString::null);
+       var = QVariant(QString {});
         break;
       }
       default:
@@ -837,7 +837,7 @@ void CSVToolWindow::updateAction()
                     break;
                   }
                   default: // Nothing
-                    var = QVariant(QString::null);
+                    var = QVariant(QString {});
                 }
               }
               else
@@ -845,7 +845,7 @@ void CSVToolWindow::updateAction()
               break;
             }
             default: // Nothing
-              var = QVariant(QString::null);
+              var = QVariant(QString {});
           }
         }
         else
@@ -859,7 +859,7 @@ void CSVToolWindow::updateAction()
         filetype = (fields.at(i).fileType());
 
         if(value.isNull())
-          var = QVariant(QString::null); // Nothing (error)
+          var = QVariant(QString {}); // Nothing (error)
         else
         {
           _fileName = value;
@@ -869,21 +869,21 @@ void CSVToolWindow::updateAction()
             {
               var = imageLoadAndEncode(_fileName);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               break;
             }
             case CSVMapField::TYPE_IMAGEENC:
             {
               var = imageLoadAndEncode(_fileName, true);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               break;
             }
             case CSVMapField::TYPE_FILE:
             {
               var = docLoadAndEncode(_fileName);
               if (var == false)
-                var = QVariant(QString::null); // Nothing (error)
+                var = QVariant(QString {}); // Nothing (error)
               else
                 mimetype = mimedb.mimeTypeForFile(QFileInfo(_fileName)).name();
               break;
@@ -906,7 +906,7 @@ void CSVToolWindow::updateAction()
       }
       case CSVMapField::Action_UseNull:
       {
-       var = QVariant(QString::null);
+       var = QVariant(QString {});
         break;
       }
       default:
@@ -921,7 +921,7 @@ void CSVToolWindow::updateAction()
       where += fields.at(i).name() + "=" + label;
       wheres.insert(label, var);
     }
-      else 
+      else
     {
       if(!values.empty())
         set += ", ";

@@ -79,7 +79,7 @@ class CSVDataPrivate
             if (! field->isNull() && haveText)
               record.append(field->trimmed());
             else
-              record.append(QString::null);
+              record.append(QString {});
 
             col++;
 
@@ -235,7 +235,7 @@ QString CSVData::header(int column)
         }
     }
     else if (!_firstRowHeaders) {
-        label = QString::null;
+        label = QString {};
     }
     else {
         label = tr("unnamed");
@@ -347,7 +347,7 @@ unsigned int CSVData::rows()
 
 QString CSVData::value(int row, int column)
 {
-  QString result = QString::null;
+  QString result = QString {};
 
   if (_data &&
       row < _data->_model.size() && column < _data->_model.at(row).size())

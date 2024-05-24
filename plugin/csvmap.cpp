@@ -19,22 +19,22 @@ QString CSVMap::DefaultDelimiter = QString(",");
 CSVMap::CSVMap(const QString & name)
 {
   _name = name;
-  _description = QString::null;
+  _description = QString {};
   _action = Insert;
-  _sqlPre = QString::null;
+  _sqlPre = QString {};
   _sqlPreContinueOnError = false;
-  _sqlPost = QString::null;
+  _sqlPost = QString {};
 }
 
 CSVMap::CSVMap(const QDomElement & elem)
 {
-  _name = QString::null;
-  _description = QString::null;
-  _delimiter   = QString::null;
+  _name = QString {};
+  _description = QString {};
+  _delimiter   = QString {};
   _action = Insert;
-  _sqlPre = QString::null;
+  _sqlPre = QString {};
   _sqlPreContinueOnError = false;
-  _sqlPost = QString::null;
+  _sqlPost = QString {};
 
   QDomNodeList nList = elem.childNodes();
   for(int n = 0; n < nList.count(); ++n)
@@ -269,12 +269,12 @@ CSVMapField::CSVMapField(const QString & name)
   _ifNullAction = Nothing;
   _columnAlt = 1;
   _ifNullActionAlt = Nothing;
-  _valueAlt = QString::null;
+  _valueAlt = QString {};
 }
 
 CSVMapField::CSVMapField(const QDomElement & elem)
 {
-  _name = QString::null;
+  _name = QString {};
   _isKey = false;
   _type  = QVariant::Invalid;
   _action = Action_Default;
@@ -282,7 +282,7 @@ CSVMapField::CSVMapField(const QDomElement & elem)
   _ifNullAction = Nothing;
   _columnAlt = 1;
   _ifNullActionAlt = Nothing;
-  _valueAlt = QString::null;
+  _valueAlt = QString {};
 
   Action action = Action_Default;
 
