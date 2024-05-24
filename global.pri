@@ -17,7 +17,11 @@ OPENRPT_HEADERS = $$(OPENRPT_HEADERS)
   OPENRPT_DIR_REL=true
 }
 
-OPENRPT_BLD = $${OPENRPT_DIR}
+OPENRPT_BLD = $$(OPENRPT_BLD)
+isEmpty( OPENRPT_BLD ) {
+  OPENRPT_BLD = $${OPENRPT_DIR}
+  OPENRPT_BLD_REL=true
+}
 exists($${OPENRPT_DIR}-build-desktop) {
   OPENRPT_BLD = $${OPENRPT_DIR}-build-desktop
 }
@@ -36,8 +40,8 @@ isEmpty( OPENRPT_LIBDIR ) {
   error("Could not set the OPENRPT_LIBDIR qmake variable.")
 }
 
-! isEmpty( OPENRPT_DIR_REL    ) { OPENRPT_DIR    = ../$${OPENRPT_DIR}
-                                  OPENRPT_BLD    = ../$${OPENRPT_BLD}    }
+! isEmpty( OPENRPT_DIR_REL    ) { OPENRPT_DIR    = ../$${OPENRPT_DIR}    }
+! isEmpty( OPENRPT_BLD_REL    ) { OPENRPT_BLD    = ../$${OPENRPT_BLD}    }
 ! isEmpty( OPENRPT_LIBDIR_REL ) { OPENRPT_LIBDIR = ../$${OPENRPT_LIBDIR} }
 
 LIBEXT = $${QMAKE_EXTENSION_SHLIB}
