@@ -9,7 +9,7 @@
 #
 
 TEMPLATE = app
-CONFIG += qt warn_on release
+CONFIG += qt warn_on
 
 HARDCODE_APPLICATION_DIR = $$(HARDCODE_APPLICATION_DIR)
 ! isEmpty( HARDCODE_APPLICATION_DIR ) {
@@ -53,7 +53,7 @@ macx {
 }
 
 # Input
-FORMS   = 
+FORMS   =
 HEADERS = ../csvimpcommon/csvimpdata.h  \
           ../csvimpcommon/csvimpplugininterface.h
 

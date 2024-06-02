@@ -9,7 +9,7 @@
 #
 
 TEMPLATE        = lib
-CONFIG         += plugin qt warn_on release
+CONFIG         += plugin qt warn_on
 TARGET          = $$qtLibraryTarget(csvimpplugin)
 DESTDIR         = ../plugins
 
